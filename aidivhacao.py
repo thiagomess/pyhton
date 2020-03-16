@@ -4,14 +4,17 @@ print("*******************************")
 
 numero_secreto = 42
 total_de_tentativas = 3
-rodada = 1
 
-while rodada <= total_de_tentativas:
-    print("Tentativa {} de {}".format(rodada, total_de_tentativas)) # usando o format, popula o {} com o valor
+for rodada in range(1, total_de_tentativas + 1):
+    print("Tentativa {} de {}".format(rodada, total_de_tentativas)) # usando o format, popula o {} com o valor https://docs.python.org/3/library/string.html#formatexamples
+    # print(f"Tentativa {rodada} de {total_de_tentativas}")  #caso adicione o f fora da string é possivel utilizar assim
     chute_str = input("Digite o seu número: ")
-
     chute = int(chute_str)
     print("Você digitou: ", chute)
+
+    if chute < 1 or chute > 100:
+        print("Você deve digitar um número entre 1 e 100")
+        continue #pula o laço para a proxima iteração
 
     acertou = numero_secreto == chute
     maior = chute > numero_secreto
@@ -25,7 +28,5 @@ while rodada <= total_de_tentativas:
             print("Você errou! O seu chute foi maior do que o número secreto")
         elif menor:
             print("Você errou! O seu chute foi menor do que o número secreto")
-    rodada = rodada + 1
-
 
 print("Fim do jogo")
