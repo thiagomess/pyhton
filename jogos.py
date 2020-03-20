@@ -1,4 +1,4 @@
-import aidivhacao
+import adivinhacao
 import forca
 print("**************************")
 print("****Escolha o seu jogo****")
@@ -14,4 +14,4 @@ if jogo == 1:
     forca.jogar()
 elif jogo == 2:
     print("Você escolheu o jogo da Advinhação")
-    aidivhacao.jogar()
+    adivinhacao.jogar()
