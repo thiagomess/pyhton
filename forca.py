@@ -6,7 +6,18 @@ def jogar():
     print("Bem vindo ao game de forca")
     print("**************************")
 
-    palavras = ["maça", "banana", "morango", "laranja", "tangerina", "caqui", "pessego", "melancia"]
+    # with open("palavras.txt") as arquivo: #Essa é outra forma de abrir o arquivo, mesmo caso haja exceção,
+    # o arquivo é fechado automaticamente
+    try:
+        arquivo = open("palavras.txt", "r")
+        palavras = []
+
+        for linha in arquivo:
+            palavras.append(linha.strip())
+        arquivo.close()
+    except:
+        palavras = ["maça", "banana", "morango", "laranja", "tangerina", "caqui", "pessego", "melancia"]
+
     random.shuffle(palavras)
 
     palavra_secreta = palavras[0].upper()
