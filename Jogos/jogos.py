@@ -1,5 +1,5 @@
-import adivinhacao
-import forca
+from Jogos import adivinhacao, forca
+
 print("**************************")
 print("****Escolha o seu jogo****")
 print("**************************")
