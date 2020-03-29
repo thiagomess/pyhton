@@ -6,20 +6,35 @@ class Conta:
     # None é igual a null no python
     def __init__(self, numero, titular, saldo, limite=1000.0):
         print("Construindo objeto")
-        self.numero = numero
-        self.titular = titular
-        self.saldo = saldo
-        self.limite = limite
+        self.__numero = numero  # com __ o atributo se torna privado
+        self.__titular = titular  # com __ o atributo se torna privado
+        self.__saldo = saldo  # com __ o atributo se torna privado
+        self.__limite = limite  # com __ o atributo se torna privado
 
     def extrato(self):
-        print("O {} possuí saldo de R$ {} e limite especial de R$ {}".format(self.titular, self.saldo, self.limite))
+        print(
+            "O {} possuí saldo de R$ {} e limite especial de R$ {}".format(self.__titular, self.__saldo, self.__limite))
 
     def deposita(self, valor):
-        self.saldo += valor
+        self.__saldo += valor
 
     def saca(self, valor):
-        total_disponivel = self.saldo + self.limite
-        if valor <= total_disponivel:
-            self.saldo -= valor
+        if self.__verifica_valor_saque(valor):
+            self.__saldo -= valor
         else:
-            print("O valor do saque é superior o valor disponível")
+            print("O valor do saque é superior ao valor disponível")
+
+    def transfere(self, valor, destino):
+        if self.__verifica_valor_saque(valor):
+            self.saca(valor)
+            destino.deposita(valor)
+        else:
+            print("O valor da transferência é superior ao valor disponível")
+
+
+    def __verifica_valor_saque(self, valor):
+        total_disponivel = self.__saldo + self.__limite
+        if valor <= total_disponivel:
+            return True
+        else:
+            return False
