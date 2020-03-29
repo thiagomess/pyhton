@@ -1,4 +1,5 @@
 class Conta:
+    # forma de chamar essa classe no console: from OO.conta import Conta
 
     # Construtor e inicialização dos parametros
     # self é a referência que sabe encontrar o objeto construído em memória.
@@ -31,10 +32,25 @@ class Conta:
         else:
             print("O valor da transferência é superior ao valor disponível")
 
-
     def __verifica_valor_saque(self, valor):
         total_disponivel = self.__saldo + self.__limite
         if valor <= total_disponivel:
             return True
         else:
             return False
+
+    @property  # cria um getter
+    def saldo(self):
+        return self.__saldo
+
+    @property  # cria um getter
+    def titular(self):
+        return self.__titular
+
+    @property  # cria um getter
+    def limite(self):
+        return self.__limite
+
+    @limite.setter  # cria um setter e obrigatoriamente deve ter um @property com esse nome,
+    def limite(self, limite):
+        self.__limite = limite
