@@ -32,12 +32,10 @@ class Conta:
         else:
             print("O valor da transferência é superior ao valor disponível")
 
-    def __verifica_valor_saque(self, valor):
-        total_disponivel = self.__saldo + self.__limite
-        if valor <= total_disponivel:
-            return True
-        else:
-            return False
+    # método privado
+    def __verifica_valor_saque(self, valor_a_sacar):
+        valor_disponivel = self.__saldo + self.__limite
+        return valor_a_sacar <= valor_disponivel
 
     @property  # cria um getter
     def saldo(self):
@@ -54,3 +52,12 @@ class Conta:
     @limite.setter  # cria um setter e obrigatoriamente deve ter um @property com esse nome,
     def limite(self, limite):
         self.__limite = limite
+
+    # Método estatico
+    @staticmethod
+    def codigo_banco():
+        return "0001"
+
+    @staticmethod
+    def codigos_bancos():
+        return {'BB': '001', 'Caixa': '104', 'Bradesco': '237', 'Itaú': '341'}
