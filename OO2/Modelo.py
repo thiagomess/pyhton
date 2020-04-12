@@ -1,57 +1,47 @@
-class Filme:
+class Programa:
+    def __init__(self, nome, ano):
+        self._nome = nome
+        self.ano = ano
+        self._likes = 0
+
+    @property  # cria um getter
+    def nome(self):
+        return self._nome.title()
+
+    @nome.setter  # cria um setter
+    def nome(self, nome):
+        self._nome = nome
+
+    @property  # cria um getter
+    def likes(self):
+        return self._likes
+
+    def dar_like(self):
+        self._likes += 1
+
+
+class Filme(Programa): # Recebe a classe mae por parametro
     def __init__(self, nome, ano, duracao):
-        self.__nome = nome
-        self.ano = ano
+        super().__init__(nome, ano) # sobescreve o metodo init da classe mae
         self.duracao = duracao
-        self.__likes = 0
 
-    @property  # cria um getter
-    def nome(self):
-        return self.__nome.title()
-
-    @nome.setter  # cria um setter
-    def nome(self, nome):
-        self.__nome = nome
-
-    @property  # cria um getter
-    def likes(self):
-        return self.__likes
-
-    def dar_like(self):
-        self.__likes += 1
+    def imprime(self):
+        print(f'Nome: {self.nome} - Ano: {self.ano} - Duração: {self.duracao} - Likes: {self.likes} ')
 
 
-class Serie:
+class Serie(Programa):
     def __init__(self, nome, ano, temporadas):
-        self.__nome = nome
-        self.ano = ano
+        super().__init__(nome, ano)
         self.temporadas = temporadas
-        self.__likes = 0
 
-    @property  # cria um getter
-    def nome(self):
-        return self.__nome.title()
-
-    @nome.setter  # cria um setter
-    def nome(self, nome):
-        self.__nome = nome
-
-    @property  # cria um getter
-    def likes(self):
-        return self.__likes
-
-    def dar_like(self):
-        self.__likes += 1
-
-
+    def imprime(self):
+        print(f'Nome: {self.nome} - Ano: {self.ano} - Temporadas: {self.temporadas} - Likes: {self.likes} ')
 
 
 vingadores = Filme('vingadores - guerra infinita', 2018, 160)
 vingadores.dar_like()
-print(f'Nome: {vingadores.nome} - Ano: {vingadores.ano} - Duração: {vingadores.duracao} - Likes: {vingadores.likes} ')
+vingadores.imprime()
 
 greys = Serie("grey's anatomy", 2004, 16)
 greys.dar_like()
-print(f'Nome: {greys.nome} - Ano: {greys.ano} - Temporadas: {greys.temporadas} - Likes: {greys.likes}')
-
-
+greys.imprime()
