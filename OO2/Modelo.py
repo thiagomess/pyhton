@@ -19,14 +19,19 @@ class Programa:
     def dar_like(self):
         self._likes += 1
 
+    # ao usuar o __str__ ele sabera formatar a string, seria algo como toString
+    def __str__(self):
+        return f'Nome: {self.nome} - Ano: {self.ano} - Likes: {self.likes} '
 
-class Filme(Programa): # Recebe a classe mae por parametro
+
+class Filme(Programa):  # Recebe a classe mae por parametro
     def __init__(self, nome, ano, duracao):
-        super().__init__(nome, ano) # sobescreve o metodo init da classe mae
+        super().__init__(nome, ano)  # sobescreve o metodo init da classe mae
         self.duracao = duracao
 
-    def imprime(self):
-        print(f'Nome: {self.nome} - Ano: {self.ano} - Duração: {self.duracao} - Likes: {self.likes} ')
+    # sobescreve da classe mae
+    def __str__(self):
+        return f'Nome: {self.nome} - Ano: {self.ano} - Duração: {self.duracao} min - Likes: {self.likes} '
 
 
 class Serie(Programa):
@@ -34,14 +39,18 @@ class Serie(Programa):
         super().__init__(nome, ano)
         self.temporadas = temporadas
 
-    def imprime(self):
-        print(f'Nome: {self.nome} - Ano: {self.ano} - Temporadas: {self.temporadas} - Likes: {self.likes} ')
+    # sobescreve da classe mae
+    def __str__(self):
+        return f'Nome: {self.nome} - Ano: {self.ano} - Temporadas: {self.temporadas} - Likes: {self.likes} '
 
 
 vingadores = Filme('vingadores - guerra infinita', 2018, 160)
 vingadores.dar_like()
-vingadores.imprime()
 
 greys = Serie("grey's anatomy", 2004, 16)
 greys.dar_like()
-greys.imprime()
+
+filmes_e_series = [vingadores, greys]
+
+for programa in filmes_e_series:
+    print(programa)
