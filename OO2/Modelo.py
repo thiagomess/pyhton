@@ -1,3 +1,5 @@
+# informações sobre classes abstratas https://cursos.alura.com.br/course/python-3-avancando-orientacao-objetos/task/42183
+
 class Programa:
     def __init__(self, nome, ano):
         self._nome = nome
@@ -49,13 +51,14 @@ class Playlist:
         self.nome = nome
         self._programas = programas
 
-    @property
-    def listagem(self):
-        return self._programas
+    def __getitem__(self, item):  # Este método define algo que é iterável (Duck Typing)
+        return self._programas[item]
 
-    @property
-    def tamanho(self):
+    def __len__(self):  # Este metodo magico transforma o item em sized
         return len(self._programas)
+
+    # No Python Data Model, todo objeto em Python pode se comportar de forma a ser compatível e mais próximo à
+    #  linguagem, e de toda a ideia idiomática dela.
 
 
 vingadores = Filme('vingadores - guerra infinita', 2018, 160)
@@ -72,8 +75,8 @@ filmes_e_series = [vingadores, greys, demolidor, panico]
 
 playlist_fim_de_semana = Playlist('fim de semana', filmes_e_series)
 
-print(f'Tamanho da playlist: {playlist_fim_de_semana.tamanho}')
-print(f'Existe ou não? {demolidor in playlist_fim_de_semana.listagem}')
+print(f'Tamanho da playlist: {len(playlist_fim_de_semana)}')
+print(f'Existe ou não? {demolidor in playlist_fim_de_semana}')
 
-for programa in playlist_fim_de_semana.listagem:
+for programa in playlist_fim_de_semana:
     print(programa)
