@@ -44,13 +44,36 @@ class Serie(Programa):
         return f'Nome: {self.nome} - Ano: {self.ano} - Temporadas: {self.temporadas} - Likes: {self.likes} '
 
 
-vingadores = Filme('vingadores - guerra infinita', 2018, 160)
-vingadores.dar_like()
+class Playlist:
+    def __init__(self, nome, programas):
+        self.nome = nome
+        self._programas = programas
 
+    @property
+    def listagem(self):
+        return self._programas
+
+    @property
+    def tamanho(self):
+        return len(self._programas)
+
+
+vingadores = Filme('vingadores - guerra infinita', 2018, 160)
 greys = Serie("grey's anatomy", 2004, 16)
+panico = Filme("Panico", 1996, 100)
+demolidor = Serie('demolidor', 2016, 2)
+
+vingadores.dar_like()
+panico.dar_like()
+demolidor.dar_like()
 greys.dar_like()
 
-filmes_e_series = [vingadores, greys]
+filmes_e_series = [vingadores, greys, demolidor, panico]
 
-for programa in filmes_e_series:
+playlist_fim_de_semana = Playlist('fim de semana', filmes_e_series)
+
+print(f'Tamanho da playlist: {playlist_fim_de_semana.tamanho}')
+print(f'Existe ou não? {demolidor in playlist_fim_de_semana.listagem}')
+
+for programa in playlist_fim_de_semana.listagem:
     print(programa)
